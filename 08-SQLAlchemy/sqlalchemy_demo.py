@@ -4,7 +4,7 @@ from flask_migrate import Migrate
 
 app = Flask(__name__)
 # 配置数据库
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:root@localhost:3306/flask_test'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:root@127.0.0.1:3306/flask_test'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 # 创建数据库对象
 db = SQLAlchemy(app)
@@ -42,10 +42,10 @@ if __name__ == '__main__':
     staff = Role(rolename='staff')
 
     # 插入数据
-    #  python = User(username='python', email='python@123.com', role=admin)
-    #  zhao = User(username='zhao', email='zhao@123.com', role=staff)
-    #  qian = User(username='qian', email='qian@123.com', role=staff)
-    #  sun = User(username='sun', email='sun@123.com', role=staff)
-    #  li = User(username='li', email='li@123.com', role=staff)
-    #  db.session.add_all([python, zhao, qian, sun, li])
-    #  db.session.commit()
+    python = User(username='python', email='python@123.com', role=admin)
+    zhao = User(username='zhao', email='zhao@123.com', role=staff)
+    qian = User(username='qian', email='qian@123.com', role=staff)
+    sun = User(username='sun', email='sun@123.com', role=staff)
+    li = User(username='li', email='li@123.com', role=staff)
+    db.session.add_all([python, zhao, qian, sun, li])
+    db.session.commit()
