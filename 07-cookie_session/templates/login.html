@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>登录页面</title>
+    </head>
+    <body>
+        <form method='POST'>
+            <span>用户名:</span>
+            <input type='text', name='name' value="{{ name }}"/>
+            </br>
+            <span>密&nbsp&nbsp&nbsp码:</span>
+            <input type='password', name='pwd' value="{{ pwd }}"/>
+            </br>
+            {% with errmsgs = get_flashed_messages() %}
+                {% if errmsgs %}
+                    {% for errmsg in errmsgs %}
+                        {{ errmsg }}
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            </br>
+            <input type='submit', name='submit', value='提交'/>
+        </form>
+    </body>
+</html>
+
