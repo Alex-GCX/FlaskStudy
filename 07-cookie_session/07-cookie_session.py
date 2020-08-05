@@ -11,11 +11,13 @@ app.secret_key = 'awnawu31231n231jnajnw'
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    # GET
     if request.method == 'GET':
         # 获取cookie
         name = request.cookies.get('name', '')
         pwd = request.cookies.get('pwd', '')
         return render_template('login.html', name=name, pwd=pwd)
+    # POST
     # 获取表单数据
     name = request.form.get('name')
     pwd = request.form.get('pwd')
@@ -27,15 +29,25 @@ def login():
         session['name'] = name
         # 使用cookie记录用户名
         resp = make_response(redirect(url_for('index')))
+        # 默认有效期为浏览器关闭前有效，可加参数 max_age=3600, 3600秒后过期
         resp.set_cookie('name', name)
         resp.set_cookie('pwd', pwd)
         return resp
+    # 校验失败
     errmsg = '用户名密码错误'
     flash(errmsg)
     # 使用cookie记录用户名
     resp = make_response(redirect(url_for('login')))
     resp.set_cookie('name', name)
     resp.set_cookie('pwd', pwd)
+    return resp
+
+
+@app.route('/delete_cookie')
+def delete_cookie():
+    resp = make_response('删除成功')
+    resp.delete_cookie("name")
+    resp.delete_cookie("pwd")
     return resp
 
 
