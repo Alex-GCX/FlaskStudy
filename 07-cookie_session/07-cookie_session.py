@@ -45,7 +45,10 @@ def login():
 
 @app.route('/delete_cookie')
 def delete_cookie():
-    resp = make_response('删除成功')
+    '''
+    删除cookie的本质是将过期时间改成创建时的时间，而做不到真正的删除掉浏览器的cookie，因为控制不了浏览器
+    '''
+    resp = make_response('删除cookie成功')
     resp.delete_cookie("name")
     resp.delete_cookie("pwd")
     return resp
